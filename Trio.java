@@ -4,27 +4,22 @@
 public class Trio implements MenuItem
 {
 
-	private String name;
-	private double price;
-
 	private Sandwich sandwich;
 	private Salad salad;
 	private Drink drink;
 
-	public Trio(Sandwich sandwich, Salad salad, Drink drink)
+	public Trio(Sandwich san, Salad sal, Drink d)
 	{
-		this.sandwich = sandwich;
-		this.salad = salad;
-		this.drink = drink;
+		sandwich = san;
+		salad = sal;
+		drink = d;
 	}
 
-	@Override
 	public String getName()
 	{
 		return sandwich.getName() + "/ " + salad.getName() + "/ " + drink.getName() + " Trio";
 	}
 
-	@Override
 	public double getPrice()
 	{
 		double total = 0;
@@ -33,8 +28,8 @@ public class Trio implements MenuItem
 		double t2 = sandwich.getPrice() + drink.getPrice();
 		double t3 = salad.getPrice() + drink.getPrice();
 
-		total = Math.max(t1, t2);
-		total = Math.max(total, t3);
+		total = Math.max(t1, t2); // (sandwich + salad) vs (sandwich + drink)
+		total = Math.max(total, t3); // (salad + drink) vs. previous result
 
 		return total;
 	}
